@@ -1,0 +1,259 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Table Data Diri</title>
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+      integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/assets/js/jquery-3.6.0.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+  </head>
+  <body style="background-color: #86a6af;">
+    <br />
+    <br />
+    <br />
+    <div class="container card">
+      <h2 style="text-align: center;"><b>Data</b> </h2>
+      <hr>  
+      <button
+        class="btn btn-dark"
+        data-toggle="modal"
+        data-target="#myModalAdd"
+        style="background-color: #86a6af"
+      >Tambah</button>
+      <br />
+      <table class="table table-light" id="mytable" >
+        <thead>
+          <tr >
+            <th>No</th>
+            <th>Nama</th>
+            <th>Tgl Lahir</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each results}}
+            <tr>
+              <td>{{id}}</td>
+              <td>{{username}}</td>
+              <td>{{tgl_lahir}}</td>
+              <td>
+                <a
+                  href="javascript:void(0);"
+                  class="btn btn-sm btn-secondary edit"
+                  data-id="{{id}}"
+                  data-username="{{username}}"
+                  data-tgl_lahir="{{tgl_lahir}}"
+                >Edit</a>
+                <a
+                  href="javascript:void(0);"
+                  class="btn btn-sm btn-danger delete"
+                  data-id="{{id}}"
+                >Delete</a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal Add Produk-->
+    <form action="/save" method="post">
+      <div
+        class="modal fade"
+        id="myModalAdd"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  placeholder="User Name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="tgl_lahir"
+                  class="form-control"
+                  placeholder="Tanggal Lahir"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >Close</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal Update Produk-->
+    <form action="/update" method="post">
+      <div
+        class="modal fade"
+        id="EditModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control username"
+                  placeholder="Product Name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="tgl_lahir"
+                  class="form-control price"
+                  placeholder="Price"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="id" />
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal Delete Produk-->
+    <form id="add-row-form" action="/delete" method="post">
+      <div
+        class="modal fade"
+        id="DeleteModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="myModalLabel">Delete Data</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              ><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <strong>Anda yakin mau menghapus data ini?</strong>
+            </div>
+            <div class="modal-footer">
+              <input
+                type="hidden"
+                name="id"
+                class="form-control id2"
+                required
+              />
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+              >Close</button>
+              <button type="submit" class="btn btn-success">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script>
+      $(document).ready(function(){ //tampilkan data ke modal untuk edit
+      $('#mytable').on('click','.edit',function(){ var id = $(this).data('id');
+      var username = $(this).data('username'); var tgl_lahir =
+      $(this).data('tgl_lahir'); $('#EditModal').modal('show');
+      $('.username').val(username); $('.price').val(tgl_lahir);
+      $('.id').val(id); }); //tampilkan modal hapus record
+      $('#mytable').on('click','.delete',function(){ var id =
+      $(this).data('id'); $('#DeleteModal').modal('show'); $('.id2').val(id);
+      }); });
+    </script>
+  </body>
+</html>

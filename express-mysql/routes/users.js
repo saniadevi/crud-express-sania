@@ -14,7 +14,7 @@ router.get("/", function (req, res, next) {
       });
     } else {
       //reander ke view post index
-      res.render("tabel", {
+      res.render("users", {
         data: rows, //    })
       });
     }
